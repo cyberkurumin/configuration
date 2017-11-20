@@ -60,6 +60,9 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'docteurklein/php-getter-setter.vim'
 Plug 'arnaud-lb/vim-php-namespace'
+Plug 'joonty/vdebug'
+Plug 'shougo/neocomplete.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -97,3 +100,23 @@ noremap <Leader>fi :call PhpImplementations('<cword>')<CR>
 noremap <Leader>fe :call PhpSubclasses('<cword>')<CR>
 
 let g:syntastic_php_phpcs_args = '--standard=Symfony'
+
+if !empty(glob('~/.vimprofile'))
+    so ~/.vimprofile
+endif
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" " Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
