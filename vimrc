@@ -1,3 +1,4 @@
+set encoding=utf-8
 filetype plugin indent on
 syntax on
 
@@ -63,6 +64,14 @@ Plug 'arnaud-lb/vim-php-namespace'
 Plug 'joonty/vdebug'
 Plug 'shougo/neocomplete.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'moll/vim-node'
+Plug 'ervandew/supertab'
+Plug 'nvie/vim-flake8'
+
+Plug 'hashivim/vim-terraform'
+Plug 'diepm/vim-rest-console'
+
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
@@ -104,6 +113,9 @@ let g:syntastic_php_phpcs_args = '--standard=Symfony'
 if !empty(glob('~/.vimprofile'))
     so ~/.vimprofile
 endif
+
+autocmd BufWritePost *.py call Flake8()
+let g:syntastic_python_checkers=['flake8']
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
