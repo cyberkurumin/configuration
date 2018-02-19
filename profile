@@ -4,3 +4,5 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export EDITOR=$(which vim)
 export GIT_EDITOR=$(which vim)
+
+export HOMEBREW_NO_EMOJI=1
